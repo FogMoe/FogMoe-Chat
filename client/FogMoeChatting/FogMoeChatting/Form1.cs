@@ -11,12 +11,14 @@ using System.Net;
 using System.Collections.Specialized;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Net.NetworkInformation;
+using System.Threading;
 
 namespace FogMoeChatting
 {
-    public partial class Form1 : Form
+    public partial class ChatBox : Form
     {
-        public Form1()
+        public ChatBox()
         {
             InitializeComponent();
         }
@@ -25,7 +27,43 @@ namespace FogMoeChatting
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadMessage(true);
+
+            Thread t = new Thread(TestOnlineStatus);
+            t.Start();
         }
+
+        void TestOnlineStatus()
+        {
+            while (true)
+            {
+                if (OnlineStatus() == true)
+                {
+                    label2.Text = "已连接到通讯服务器";
+                    LoadMessage(false);
+                }
+                else
+                {
+                    label2.Text = "连接通讯服务器失败";
+                }
+                Thread.Sleep(2000);
+            }
+
+        }
+
+        public bool OnlineStatus() //判断在线状态连接服务器
+        {
+            Ping ping = new Ping();
+            PingReply pingReply = ping.Send("fog.moe");
+            if (pingReply.Status == IPStatus.Success)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         public void ChangeKeyColor(RichTextBox rBox, string key, Color color)
         {
@@ -84,20 +122,30 @@ namespace FogMoeChatting
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            string userName = textBox2.Text;
-            using (var client = new WebClient())
+            if (OnlineStatus() == true)
             {
-                string input = textBox1.Text;
-                var values = new NameValueCollection();
-                values["cspost"] = EncoideUrI(input);
-                values["userName"] = EncoideUrI(userName);
+                label2.Text = "已连接到通讯服务器";
 
-                var response = client.UploadValues("https://fog.moe/cschat/command.php", values);
+                string userName = textBox2.Text;
+                using (var client = new WebClient())
+                {
+                    string input = textBox1.Text;
+                    var values = new NameValueCollection();
+                    values["cspost"] = EncoideUrI(input);
+                    values["userName"] = EncoideUrI(userName);
 
-                var responseString = Encoding.Default.GetString(response);
+                    var response = client.UploadValues("https://fog.moe/cschat/command.php", values);
+
+                    var responseString = Encoding.Default.GetString(response);
+                }
+                LoadMessage(false);
+                textBox1.Clear();
             }
-            LoadMessage(false);
-            textBox1.Clear();
+            else
+            {
+                label2.Text = "连接通讯服务器失败";
+            }
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -106,6 +154,11 @@ namespace FogMoeChatting
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
