@@ -21,12 +21,13 @@ namespace FogMoeChatting
         public ChatBox()
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false;
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            LoadMessage(true);
+            LoadMessage(true);            
 
             Thread t = new Thread(TestOnlineStatus);
             t.Start();
@@ -45,7 +46,7 @@ namespace FogMoeChatting
                 {
                     label2.Text = "连接通讯服务器失败";
                 }
-                Thread.Sleep(2000);
+                Thread.Sleep(3000);
             }
 
         }
@@ -96,16 +97,9 @@ namespace FogMoeChatting
                 richTextBox1.Clear();
                 richTextBox1.Text = ("暂无聊天消息");
             }
-            else
+            else if (richTextBox1.Text != message)
             {
-                if (richTextBox1.Text == "暂无聊天消息")
-                {
-                    richTextBox1.Text = (message + System.Environment.NewLine);
-                }
-                else
-                {
-                    richTextBox1.AppendText(message + System.Environment.NewLine);
-                }
+                richTextBox1.Text = (message);
                 ChangeKeyColor(richTextBox1, "发送：", Color.FromArgb(0,47,147));
             }
         }
@@ -162,6 +156,8 @@ namespace FogMoeChatting
         {
 
         }
+
+
     }
 
 }
