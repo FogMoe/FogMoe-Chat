@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Collections.Specialized;
-using System.Text;
+using System.IO;
 
 namespace FogMoeChatting
 {
@@ -33,7 +33,7 @@ namespace FogMoeChatting
 
                 var responseString = Encoding.Default.GetString(response);
             }
-            webBrowser1.Document.ExecCommand("Refresh", false, null);
+            LoadMessage();
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -48,7 +48,25 @@ namespace FogMoeChatting
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LoadMessage();
+        }
 
+
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void LoadMessage() //同步聊天消息
+        {
+            string path = Directory.GetCurrentDirectory() + @"\message\";
+            using (var client = new WebClient())
+            {
+                client.DownloadFile("https://fog.moe/cschat/message.fmc", path + "message.fmc");
+            }
+            string message = File.ReadAllText(path + "message.fmc");
+            textBox2.AppendText(message + System.Environment.NewLine);
         }
     }
 
