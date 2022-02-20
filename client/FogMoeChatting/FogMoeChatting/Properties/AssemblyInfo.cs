@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("FogMoeChatting")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("FogMoeChat Beta")]
+[assembly: AssemblyDescription("雾萌聊客户端 测试版")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FogMoeChatting")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("kc@fog.moe")]
+[assembly: AssemblyProduct("https://github.com/scarletkc/FogMoeChat-Release")]
+[assembly: AssemblyCopyright("Copyright ©  2022 Kc.")]
+[assembly: AssemblyTrademark("雾萌 (Fog.Moe)")]
 [assembly: AssemblyCulture("")]
 
 // 将 ComVisible 设置为 false 会使此程序集中的类型

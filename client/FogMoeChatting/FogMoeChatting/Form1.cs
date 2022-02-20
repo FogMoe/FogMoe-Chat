@@ -286,6 +286,11 @@ namespace FogMoeChatting
             }
 
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/scarletkc/FogMoeChat-Release");
+        }
     }
 
 }

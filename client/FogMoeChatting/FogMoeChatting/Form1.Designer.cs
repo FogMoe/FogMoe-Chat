@@ -41,6 +41,7 @@
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -150,12 +151,25 @@
             this.timer1.Interval = 30000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 7.875F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label4.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label4.Location = new System.Drawing.Point(1071, 842);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(171, 28);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "View on GitHub";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // ChatBox
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(190)))), ((int)(((byte)(178)))));
-            this.ClientSize = new System.Drawing.Size(1254, 829);
+            this.ClientSize = new System.Drawing.Size(1254, 879);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
@@ -191,6 +205,7 @@
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.Label label4;
     }
 }
 
