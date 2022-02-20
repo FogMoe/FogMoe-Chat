@@ -18,19 +18,22 @@ namespace FogMoeChatting
 {
     public partial class ChatBox : Form
     {
+        Thread tThread;
+        Thread cThread;
+        public string path = Directory.GetCurrentDirectory() + @"\message\";
         public ChatBox()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
+            tThread = new Thread(TestOnlineStatus);
         }
 
 
-        private void Form1_Load(object sender, EventArgs e)
+        public void Form1_Load(object sender, EventArgs e)
         {
-            LoadMessage(true);            
-
-            Thread t = new Thread(TestOnlineStatus);
-            t.Start();
+            tThread.Start();
+            LoadMessage(true);
+            tThread.IsBackground = true;
         }
 
         void TestOnlineStatus()
@@ -89,7 +92,6 @@ namespace FogMoeChatting
 
         public void LoadMessage(bool _init) //同步聊天消息
         {
-            string path = Directory.GetCurrentDirectory() + @"\message\";
             using (var client = new WebClient())
             {
                 client.DownloadFile("https://fog.moe/cschat/message.fmc", path + "message.fmc");
@@ -107,13 +109,24 @@ namespace FogMoeChatting
             else if (richTextBox1.Text != message && message != "")
             {
                 richTextBox1.Text = message;
-                ChangeKeyColor(richTextBox1, "发送：", Color.FromArgb(0,47,147));
-                //MessageBox.Show(richTextBox1.Text.LastIndexOf("∝").ToString());
-                //MessageBox.Show(richTextBox1.Text.LastIndexOf("№").ToString());
-                //string dateStr = richTextBox1.Text.Substring(richTextBox1.Text.LastIndexOf("∝"), richTextBox1.Text.LastIndexOf("№"));
-                //ChangeKeyColor(richTextBox1, dateStr, Color.FromArgb(0, 47, 147));
-                //richTextBox1.Text.Replace("∝", "");
-                //richTextBox1.Text.Replace("№", "");
+                ChangeKeyColor(richTextBox1, "发送：", Color.FromArgb(254,67,101));
+                string[] lines = richTextBox1.Text.Split('\n');
+                foreach (var line in lines)
+                {
+                    if (line.Length >0)
+                    {
+                        string date = line.Substring(0, 14);
+                        ChangeKeyColor(richTextBox1, date, Color.FromArgb(0, 47, 147));
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            if(tThread.IsAlive == false)
+            {
+                tThread.Resume();
             }
         }
 
@@ -129,6 +142,7 @@ namespace FogMoeChatting
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            tThread.Suspend();
             if (OnlineStatus() == true)
             {
                 label2.Text = "已连接到通讯服务器";
@@ -153,6 +167,18 @@ namespace FogMoeChatting
                 label2.Text = "连接通讯服务器失败";
             }
 
+            button1.Enabled = false;
+            cThread = new Thread(Frequency);
+            cThread.Start();
+            cThread.IsBackground = true;
+            
+        }
+
+        void Frequency()
+        {
+            Thread.Sleep(5000);
+            button1.Enabled = true;
+            cThread.Abort();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -170,7 +196,24 @@ namespace FogMoeChatting
 
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "雾萌聊天记录文件(*.fmc) | *.fmc | 所有文件(*.*) | *.*";
+            sfd.DefaultExt = ".fmc";
+            sfd.AddExtension = true;
+            sfd.RestoreDirectory = true;
+            sfd.FileName = DateTime.Now.ToLongDateString().ToString()+ DateTime.Now.ToLongTimeString().ToString().Replace(":","_") +" 雾萌聊天记录.fmc";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                File.Copy(path + "message.fmc", sfd.FileName);
+            }
+        }
     }
 
 }
