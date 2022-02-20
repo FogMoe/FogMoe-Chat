@@ -119,7 +119,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "ChatBox";
-            this.Text = "雾萌聊客户端";
+            this.Text = "雾萌聊客户端 Beta1.0";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

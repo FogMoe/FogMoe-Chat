@@ -51,6 +51,9 @@ namespace FogMoeChatting
 
         }
 
+
+
+
         public bool OnlineStatus() //判断在线状态连接服务器
         {
             Ping ping = new Ping();
@@ -66,7 +69,7 @@ namespace FogMoeChatting
         }
 
 
-        public void ChangeKeyColor(RichTextBox rBox, string key, Color color)
+        public void ChangeKeyColor(RichTextBox rBox, string key, Color color) //改字符特定颜色
         {
             Regex regex = new Regex(key);
             MatchCollection collection = regex.Matches(rBox.Text);
@@ -97,10 +100,20 @@ namespace FogMoeChatting
                 richTextBox1.Clear();
                 richTextBox1.Text = ("暂无聊天消息");
             }
-            else if (richTextBox1.Text != message)
+            else if (message == "")
             {
-                richTextBox1.Text = (message);
+                richTextBox1.Text = ("暂无聊天消息");
+            }
+            else if (richTextBox1.Text != message && message != "")
+            {
+                richTextBox1.Text = message;
                 ChangeKeyColor(richTextBox1, "发送：", Color.FromArgb(0,47,147));
+                //MessageBox.Show(richTextBox1.Text.LastIndexOf("∝").ToString());
+                //MessageBox.Show(richTextBox1.Text.LastIndexOf("№").ToString());
+                //string dateStr = richTextBox1.Text.Substring(richTextBox1.Text.LastIndexOf("∝"), richTextBox1.Text.LastIndexOf("№"));
+                //ChangeKeyColor(richTextBox1, dateStr, Color.FromArgb(0, 47, 147));
+                //richTextBox1.Text.Replace("∝", "");
+                //richTextBox1.Text.Replace("№", "");
             }
         }
 
