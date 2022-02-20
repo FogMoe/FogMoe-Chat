@@ -9,8 +9,10 @@ while (true)
 		unlink($filename);
 		$myfile = fopen("message.fmc", "w");		
 	}
-	sleep(120);
+	sleep(360);
 	unlink($userOnlineList);
+	fopen($userOnlineList,'w');
+    fclose($userOnlineList);
 	echo "即将执行清理";
 }
 ?>
