@@ -1,11 +1,10 @@
-E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\obj\Release\FogMoeChatting.csproj.AssemblyReference.cache
-E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\obj\Release\FogMoeChatting.csproj.SuggestedBindingRedirects.cache
-E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\obj\Release\FogMoeChatting.ChatBox.resources
-E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\obj\Release\FogMoeChatting.csproj.GenerateResource.cache
-E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\obj\Release\FogMoeChatting.csproj.CoreCompileInputs.cache
 E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\bin\Release\FogMoeChat.exe.config
 E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\bin\Release\FogMoeChat.exe
 E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\bin\Release\FogMoeChat.pdb
+E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\obj\Release\FogMoeChatting.csproj.SuggestedBindingRedirects.cache
+E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\obj\Release\FogMoeChatting.ChatBox.resources
 E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\obj\Release\FogMoeChat.Properties.Resources.resources
+E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\obj\Release\FogMoeChatting.csproj.GenerateResource.cache
+E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\obj\Release\FogMoeChatting.csproj.CoreCompileInputs.cache
 E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\obj\Release\FogMoeChat.exe
 E:\GitHub\FogMoe-Chat\client\FogMoeChatting\FogMoeChatting\obj\Release\FogMoeChat.pdb
