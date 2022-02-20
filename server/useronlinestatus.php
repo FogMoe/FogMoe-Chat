@@ -2,12 +2,9 @@
 $userIP = $_POST['userIP'];
 $userName = urldecode($_POST['userName']);
 $onlineuservalue = '['.$userIP.'] '.$userName."\n";
-$userfile = fopen("OnlineUserList.fmc", "r");
-if (strstr($userfile,$onlineuservalue)!=true) 
-{
-fclose($userfile);
+if( strpos(file_get_contents("./OnlineUserList.fmc"),$_GET[$onlineuservalue]) !== true) {
 $userfile = fopen("OnlineUserList.fmc", "a");
 fwrite($userfile, $onlineuservalue);
-}
 fclose($userfile);
+}
 ?>
