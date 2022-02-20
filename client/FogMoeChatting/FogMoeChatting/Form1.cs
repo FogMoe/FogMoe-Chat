@@ -20,6 +20,7 @@ namespace FogMoeChatting
     {
         Thread tThread;
         Thread cThread;
+        public string userIP;
         public string path = Directory.GetCurrentDirectory() + @"\message\";
         public ChatBox()
         {
@@ -34,6 +35,8 @@ namespace FogMoeChatting
             tThread.Start();
             LoadMessage(true);
             tThread.IsBackground = true;
+            userIP = GetOnlineIp();
+            timer1.Start();
         }
 
         void TestOnlineStatus()
@@ -54,7 +57,54 @@ namespace FogMoeChatting
 
         }
 
+        public string GetOnlineIp()
+        {
+            string myIP = "0.0.0.0";
+            ///获取本地的IP地址
+            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 || ni.NetworkInterfaceType == NetworkInterfaceType.Ethernet)
+                {
+                    foreach (UnicastIPAddressInformation ip in ni.GetIPProperties().UnicastAddresses)
+                    {
+                        if (ip.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                        {
+                            myIP = ip.Address.ToString();
+                        }
+                    }
+                }
+            }
+            return myIP;
+        }
 
+        public void OnlineUserList() //发送自己并获取一次在线状态列表
+        {
+            string userName = textBox2.Text;
+            if(userName != "")
+            {
+                using (var client = new WebClient())
+                {
+                    var values = new NameValueCollection();
+                    values["userName"] = EncoideUrI(userName);
+                    values["userIP"] = userIP;
+
+                    var response = client.UploadValues("https://fog.moe/cschat/useronlinestatus.php", values);
+
+                    var responseString = Encoding.Default.GetString(response);
+                }
+
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile("https://fog.moe/cschat/OnlineUserList.fmc", path + "OnlineUserList.fmc");
+                }
+                string onlineUserList = File.ReadAllText(path + "OnlineUserList.fmc");
+                if (richTextBox2.Text != onlineUserList)
+                {
+                    richTextBox2.Text = onlineUserList;
+                }
+            }
+            
+        }
 
 
         public bool OnlineStatus() //判断在线状态连接服务器
@@ -166,6 +216,7 @@ namespace FogMoeChatting
                         var responseString = Encoding.Default.GetString(response);
                     }
                     LoadMessage(false);
+                    OnlineUserList();
                     textBox1.Clear();
                 }
             }
@@ -220,6 +271,20 @@ namespace FogMoeChatting
             {
                 File.Copy(path + "message.fmc", sfd.FileName);
             }
+        }
+
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+            OnlineUserList();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            if (timer1.Enabled != true)
+            {
+                timer1.Start();
+            }
+
         }
     }
 
