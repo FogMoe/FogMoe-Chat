@@ -148,19 +148,26 @@ namespace FogMoeChatting
                 label2.Text = "已连接到通讯服务器";
 
                 string userName = textBox2.Text;
-                using (var client = new WebClient())
+                string input = textBox1.Text;
+                if (userName == "" || input == "")
                 {
-                    string input = textBox1.Text;
-                    var values = new NameValueCollection();
-                    values["cspost"] = EncoideUrI(input);
-                    values["userName"] = EncoideUrI(userName);
-
-                    var response = client.UploadValues("https://fog.moe/cschat/command.php", values);
-
-                    var responseString = Encoding.Default.GetString(response);
+                    MessageBox.Show("用户名为空或不能发送空消息", "发送消息失败", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                LoadMessage(false);
-                textBox1.Clear();
+                else
+                {
+                    using (var client = new WebClient())
+                    {
+                        var values = new NameValueCollection();
+                        values["cspost"] = EncoideUrI(input);
+                        values["userName"] = EncoideUrI(userName);
+
+                        var response = client.UploadValues("https://fog.moe/cschat/command.php", values);
+
+                        var responseString = Encoding.Default.GetString(response);
+                    }
+                    LoadMessage(false);
+                    textBox1.Clear();
+                }
             }
             else
             {
