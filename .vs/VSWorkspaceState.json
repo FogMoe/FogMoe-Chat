@@ -4,9 +4,12 @@
     "\\client",
     "\\client\\FogMoeChatting",
     "\\client\\FogMoeChatting\\FogMoeChatting",
+    "\\client\\FogMoeChatting\\FogMoeChatting\\bin\\Debug",
+    "\\client\\FogMoeChatting\\FogMoeChatting\\bin\\Debug\\message",
+    "\\client\\FogMoeChatting\\FogMoeChatting\\bin\\Release",
     "\\client\\FogMoeChatting\\FogMoeChatting\\Properties",
     "\\server"
   ],
-  "SelectedNode": "\\server\\autoclear.php",
+  "SelectedNode": "\\client\\FogMoeChatting\\FogMoeChatting\\bin",
   "PreviewInSolutionExplorer": false
 }
