@@ -1,5 +1,11 @@
 # FogMoe-Chat
+**[Release Page](https://github.com/FogMoe/FogMoeChat-Release)**
+
+
  雾萌聊
+ 2022/2/22 Finished 
+ 
+ 
  计划：
  1.将服务端由php改为python
  2.将聊天内容在隐藏区域存储变为加密文件实时显示
