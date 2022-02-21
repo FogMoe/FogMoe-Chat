@@ -1,4 +1,4 @@
-# FogMoe-Chat
+# FogMoe-Chat Sample
 **[Release Page](https://github.com/FogMoe/FogMoeChat-Release)**
 
 
