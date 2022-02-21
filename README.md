@@ -1,5 +1,5 @@
 # FogMoe-Chat Sample
-**[Release Page](https://github.com/FogMoe/FogMoeChat-Release)**
+**[Release And About Page](https://github.com/FogMoe/FogMoeChat-Release)**
 
 
  雾萌聊
