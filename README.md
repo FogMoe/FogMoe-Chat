@@ -2,7 +2,7 @@
 **[Release and About page](https://github.com/FogMoe/FogMoeChat-Release)**
 
 
- 雾萌聊
+ 简易版雾萌聊
  2022/2/22 Finished 
  
  
