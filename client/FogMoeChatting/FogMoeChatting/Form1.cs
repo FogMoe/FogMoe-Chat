@@ -13,7 +13,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Net.NetworkInformation;
 using System.Threading;
-
+//本程序代码著作权归雾萌（Fog.Moe）所有
 namespace FogMoeChatting
 {
     public partial class ChatBox : Form
@@ -88,14 +88,14 @@ namespace FogMoeChatting
                     values["userName"] = EncoideUrI(userName);
                     values["userIP"] = userIP;
 
-                    var response = client.UploadValues("https://fog.moe/cschat/useronlinestatus.php", values);
+                    var response = client.UploadValues("https://fog.moe/fogmoechat/useronlinestatus.php", values);
 
                     var responseString = Encoding.Default.GetString(response);
                 }
 
                 using (var client = new WebClient())
                 {
-                    client.DownloadFile("https://fog.moe/cschat/OnlineUserList.fmc", path + "OnlineUserList.fmc");
+                    client.DownloadFile("https://fog.moe/fogmoechat/OnlineUserList.fmc", path + "OnlineUserList.fmc");
                 }
                 string onlineUserList = File.ReadAllText(path + "OnlineUserList.fmc");
                 if (richTextBox2.Text != onlineUserList)
@@ -144,7 +144,7 @@ namespace FogMoeChatting
         {
             using (var client = new WebClient())
             {
-                client.DownloadFile("https://fog.moe/cschat/message.fmc", path + "message.fmc");
+                client.DownloadFile("https://fog.moe/fogmoechat/message.fmc", path + "message.fmc");
             }
             string message = File.ReadAllText(path + "message.fmc");
             if (_init == true)
@@ -211,7 +211,7 @@ namespace FogMoeChatting
                         values["cspost"] = EncoideUrI(input);
                         values["userName"] = EncoideUrI(userName);
 
-                        var response = client.UploadValues("https://fog.moe/cschat/command.php", values);
+                        var response = client.UploadValues("https://fog.moe/fogmoechat/command.php", values);
 
                         var responseString = Encoding.Default.GetString(response);
                     }
@@ -289,8 +289,9 @@ namespace FogMoeChatting
 
         private void label4_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/scarletkc/FogMoeChat-Release");
+            System.Diagnostics.Process.Start("https://github.com/FogMoe/FogMoeChat-Release");
         }
     }
 
 }
+//this progam belongs to Kc and these codes written by Kc [https://github.com/scarletkc]

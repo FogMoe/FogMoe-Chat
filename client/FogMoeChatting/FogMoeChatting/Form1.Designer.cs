@@ -52,7 +52,7 @@
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.richTextBox1.Size = new System.Drawing.Size(1230, 568);
             this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.richTextBox1.Text = "https://github.com/scarletkc";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged_1);
             // 
             // textBox1

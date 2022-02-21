@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("FogMoeChat Beta")]
 [assembly: AssemblyDescription("雾萌聊客户端 测试版")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("https://github.com/scarletkc/FogMoeChat-Release")]
+[assembly: AssemblyCompany("https://github.com/FogMoe/FogMoeChat-Release")]
 [assembly: AssemblyProduct("kc@fog.moe")]
 [assembly: AssemblyCopyright("Copyright ©  2022 Kc.")]
 [assembly: AssemblyTrademark("雾萌 (Fog.Moe)")]
